@@ -1,7 +1,7 @@
 
 # Erste Hilfe fürs Linux Terminal
 
-``
+```
 Erste        .---.
 Hilfe       /     \
 fürs        \.@-@./
