@@ -203,3 +203,4 @@ Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y &&
 - "#" Kommentar, alles hinter diesem Zeichen wird nicht ausgeführt
 - Auf xfs Dateisystemen ist die Dateiwiederherstellung schwieriger...
 - Dateinamen dürfen Maximal 255 Zeichen haben
+- die Option "-y" bejaht aufkommende Nachfragen
