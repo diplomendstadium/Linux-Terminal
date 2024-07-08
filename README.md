@@ -6,7 +6,7 @@ Um diese Datei bei jedem Terminalstart anzuzeigen, einfach im
 Homeverzeichnis speichern und in der Datei ".bashrc" (ebenfalls
 im Homeordner) ganz am Ende eine Zeile mit "cat ~/README.md" ergänzen.
 
-[Datei](https://github.com/diplomendstadium/Linux-Terminal/raw/main/README.md)
+[Download](https://github.com/diplomendstadium/Linux-Terminal/raw/main/README.md)
 
 ## Hilfe zu einzelnen Befehlen
 "man befehl" oder oft auch "befehl --help" zeigt Infoseite
