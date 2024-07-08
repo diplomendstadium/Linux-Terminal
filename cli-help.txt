@@ -192,6 +192,12 @@ Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && 
   sudo dnf autoremove && flatpak update"
   
+# Automatisch wiederkehrende Aufgaben (Cron)
+Systemweite mit Adminrechten in /etc/crontab eintragen
+"systemctl status cron.service" zeigt Cronjobs an
+crontab -l zeigt aktuelle Cronjobs des Benutzers
+crontab -e editiert die aktuellen cronjobs (https://wiki.ubuntuusers.de/Cron/)
+  
 # OpenSSL
 Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 
   -salt -in dateiname -out dateiname.aes
