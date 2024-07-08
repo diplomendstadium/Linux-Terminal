@@ -1,9 +1,13 @@
 
 # Erste Hilfe fürs Linux Terminal
-https://github.com/diplomendstadium/Linux-Terminal
 
-Um die Hilfe bei jedem Terminalstart anzuzeigen, einfach die Datei cli-help.txt 
-im Homeverzeichnis speichern und in der Datei ".bashrc" (ebenfalls
-im Homeordner) ganz am Ende eine Zeile mit "cat ~/cli-help.txt" ergänzen.
+Erste        .---.
+Hilfe       /     \
+fürs        \.@-@./
+Linux       /`\_/`\
+Terminal   //  _  \\
+          | \     )|_
+Stand:   /`\_`>  <_/ \
+08.07.24 \__/'---'\__/
 
-[Download](https://github.com/diplomendstadium/Linux-Terminal/raw/main/cli-help.txt)
+Um die Hilfe bei jedem Terminalstart anzuzeigen, einfach die [Datei cli-help.txt](https://github.com/diplomendstadium/Linux-Terminal/raw/main/cli-help.txt) im Homeverzeichnis speichern und in der Datei ".bashrc" (ebenfalls im Homeordner) ganz am Ende eine Zeile mit "cat ~/cli-help.txt" ergänzen.
