@@ -191,8 +191,27 @@ Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y
   && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && 
   sudo dnf autoremove && flatpak update"
+  
+# OpenSSL
+Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 
+  -salt -in dateiname -out dateiname.aes
+Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt)
+TextVERschlüsselung: echo "Klartext" | openssl enc -aes-256-cbc -a
+TextENTschlüsselung: echo "U2FsdGVkHQ4mf8Ib0=" | openssl enc -aes-256-cbc -a -d
 
-# Info
+# Asymmetrische Crypto mit GPG
+Key-Paar erstellen: gpg --full-generate-key (RSA, 4096bit, 2y, Mail leer lassen)
+Alle Schlüssel anzeigen: "gpg --list-keys"
+Keys exportieren: gpg --output dateiname.key --armor --export keyID
+Keys importieren: gpg --import dateiname.key
+Keys signieren: gpg --sign-key keyID
+Verschlüsseln: gpg --encrypt --sign --armor -r keyID_Empfänger geheime.datei
+Entschlüsseln: gpg --decrypt geheime.datei.gpg > klartext.txt
+
+# Zufallszahlen erzeugen
+gpg --gen-random 16 54 | tr -d "a-f" (statt 54 gewünschte Bytezahl eingeben)
+
+# Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
   in der Kurzversion mit "-"
 - Verstecke Dateien erkennt man in Linux daran, dass deren Dateiname
@@ -204,3 +223,4 @@ Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y &&
 - Auf xfs Dateisystemen ist die Dateiwiederherstellung schwieriger...
 - Dateinamen dürfen Maximal 255 Zeichen haben
 - die Option "-y" bejaht aufkommende Nachfragen
+- Deutlich bessere Anleitung: https://github.com/jlevy/the-art-of-command-line
