@@ -216,6 +216,7 @@ In beiden Beispielen statt 54 gewünschte Bytezahl eingeben. Einer geht sicher:
 - gpg --gen-random 16 54 | tr -d "a-f"
 - gpg --armor --gen-random 2 54 | tr -d +=/[:alpha:]
 - od -vAn -N54 -t u4 < /dev/urandom | tr -d " " | tr -d "\n"
+Gleichverteilung prüfen: for i in {0..9}; do grep -o $i zufallszahlen.txt | wc -l; done
 
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
