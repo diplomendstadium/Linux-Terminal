@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-08.07.24 \__/'---'\__/
+10.07.24 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -18,7 +18,7 @@ Strg + L | Leert die Anzeige
 Strg + Shift + C | Kopieren
 Strg + Shift + V | Einfügen
 Tab | Vervollständigt Befehle und Dateinamen, wenn eindeutig
-  -> Tab + Tab zeigt Optionen an
+Tab + Tab | zeigt Optionen an, wenn nicht eindeutig
 Strg + D | Abmelden
 Strg + A | Springt zum Zeilenanfang
 
@@ -108,7 +108,7 @@ toch file{01..05}.{txt,docx,pdf} | Erstellt von "file01.txt" bis
   "file05.pdf" alle 15 möglichen Konstellationen
 rm file*.txt | Löscht die fünf txt-Dateien wieder
 
-## Umgang mit Variablen
+# Umgang mit Variablen
 echo "Heute ist $(date +%A)" | Ersetzt Klammerinhalt durch Befehlsergebnis
   Einfache Klammern sorgen dafür, dass die Variable nicht aufgelöst wird!
 $_ Arrgument des letzten Befehls (z.B. "mkdir test ; cd $_")
@@ -122,7 +122,7 @@ In Skripten: $1 bis $9 Positionsparameter, $0 Skriptname
  |   Leitet Ausgabe des ersten Befehls als Input an zweiten weiter
  ||  Führt 2. Befehl nur aus, wenn erster in Fehler endet
 
-## Paketverwaltung dnf (Fedora, RockyLinux, RedHat, etc.)
+# Paketverwaltung dnf (Fedora, RockyLinux, RedHat, etc.)
 dnf search magic | sucht nach Paketen, in denen "magic" vorkommt
 dnf upgrade --refresh | sucht und installiert Upgrades
 dnf list | Zeigt installierte Pakete
@@ -132,7 +132,7 @@ dnf clean all | Löscht Zwischenspeicher
 dnf autoremove | Löscht nicht mehr benötigte Pakete
 dnf history | Zeigt Bearbeitungshistorie
 
-## Paketverwaltung deb (Debian, LinuxMint, Ubuntu, MXLinux, etc.)
+# Paketverwaltung deb (Debian, LinuxMint, Ubuntu, MXLinux, etc.)
 apt update | Aktualisiert die Paketlisen
 apt search magic | sucht nach Paketen, in denen "magic" vorkommt
 apt show magic-wormhole | Zeigt Infos zu einem konkreten Paket
@@ -182,15 +182,13 @@ mount /dev/sdc1 /srv/daten | Bindet eine Partition ein
 # Systempflege
 Folgende Befehle einfach regelmäßig ausführen. Den Teil zu den Flatpaks
   auslassen, falls nicht installiert.
-Debian-Basiert: "sudo apt update && sudo apt upgrade -y && 
-  sudo apt autoclean -y && sudo apt autoremove -y && flatpak update"
-Ubuntu: "sudo apt update && sudo apt upgrade -y && sudo apt 
-  autoclean -y && sudo apt autoremove -y && sudo snap refresh &&
-  flatpak upgrade"
-Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y 
-  && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
-Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && 
-  sudo dnf autoremove && flatpak update"
+Debian-Basiert: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && flatpak update"
+Ubuntu: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo snap refresh && flatpak upgrade"
+Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
+Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
+
+# Setup Raspi
+sudo apt install -y keepassxc kleopatra openssl gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && sleep 10 && sudo reboot
   
 # Automatisch wiederkehrende Aufgaben (Cron)
 Systemweite mit Adminrechten in /etc/crontab eintragen
@@ -199,8 +197,7 @@ crontab -l zeigt aktuelle Cronjobs des Benutzers
 crontab -e editiert die aktuellen cronjobs (https://wiki.ubuntuusers.de/Cron/)
   
 # OpenSSL
-Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 
-  -salt -in dateiname -out dateiname.aes
+Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 -salt -in dateiname -out dateiname.aes
 Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt)
 TextVERschlüsselung: echo "Klartext" | openssl enc -aes-256-cbc -a
 TextENTschlüsselung: echo "U2FsdGVkHQ4mf8Ib0=" | openssl enc -aes-256-cbc -a -d
@@ -215,7 +212,10 @@ Verschlüsseln: gpg --encrypt --sign --armor -r keyID_Empfänger geheime.datei
 Entschlüsseln: gpg --decrypt geheime.datei.gpg > klartext.txt
 
 # Zufallszahlen erzeugen
-gpg --gen-random 16 54 | tr -d "a-f" (statt 54 gewünschte Bytezahl eingeben)
+In beiden Beispielen statt 54 gewünschte Bytezahl eingeben. Einer geht sicher:
+- gpg --gen-random 16 54 | tr -d "a-f"
+- gpg --armor --gen-random 2 54 | tr -d +=/[:alpha:]
+- od -vAn -N54 -t u4 < /dev/urandom | tr -d " " | tr -d "\n"
 
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
