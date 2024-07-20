@@ -188,7 +188,8 @@ Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo 
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
 
 # Setup Raspi
-sudo apt install -y keepassxc kleopatra openssl gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
+Autologin deaktivieren: In der Datei "nano /etc/lightdm/lightdm.conf" die Zeile "autologin-user=pi" auskommentieren.
+Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
   
 # Automatisch wiederkehrende Aufgaben (Cron)
 Systemweite mit Adminrechten in /etc/crontab eintragen
