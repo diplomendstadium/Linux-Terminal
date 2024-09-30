@@ -226,14 +226,14 @@ Gleichverteilung prüfen: for i in {0..9}; do grep -o $i zufallszahlen.txt | wc 
 # Systempflege
 Folgende Befehle einfach regelmäßig ausführen. Den Teil zu den Flatpaks
   auslassen, falls nicht installiert.
-Debian-Basiert: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && flatpak update"
-Ubuntu: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo snap refresh && flatpak upgrade"
-Raspi: "sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
+Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && flatpak update"
+Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo snap refresh && flatpak upgrade"
+Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
 
 # Setup Raspi
 Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "autologin-user=pi" auskommentieren.
-Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmission gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
+Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmission gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla texlive-full python3-full && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
 
 # Setup Linux Mint
-sudo apt update && sudo apt upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra idle tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim pidgin pidgin-otr && sudo reboot
+sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
