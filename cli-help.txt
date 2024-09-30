@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-23.07.24 \__/'---'\__/
+30.09.24 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
