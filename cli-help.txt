@@ -6,12 +6,13 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-30.09.24 \__/'---'\__/
+29.12.24 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
 # Hilfe zu einzelnen Befehlen
 "man befehl" oder oft auch "befehl --help" zeigt Infoseite
+hilfreicher ist oft "tldr befehl"
 
 # Tastenkürzel
 Strg + L | Leert die Anzeige
@@ -189,7 +190,7 @@ crontab -e editiert die aktuellen cronjobs (https://wiki.ubuntuusers.de/Cron/)
   
 # OpenSSL
 Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 -salt -in dateiname -out dateiname.aes
-Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt)
+Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt, hinter ...cbc einfügen)
 TextVERschlüsselung: echo "Klartext" | openssl enc -aes-256-cbc -a
 TextENTschlüsselung: echo "U2FsdGVkHQ4mf8Ib0=" | openssl enc -aes-256-cbc -a -d
 
@@ -198,23 +199,33 @@ Key-Paar erstellen: gpg --full-generate-key (RSA, 4096bit, 2y, Mail leer lassen)
 Alle Schlüssel anzeigen: "gpg --list-keys"
 Keys exportieren: gpg --output dateiname.key --armor --export keyID
 Keys importieren: gpg --import dateiname.key
+Fingerprint anzeigen: gpg --fingerprint keyID
 Keys signieren: gpg --sign-key keyID
 Verschlüsseln: gpg --encrypt --sign --armor -r keyID_Empfänger geheime.datei
 Entschlüsseln: gpg --decrypt geheime.datei.gpg > klartext.txt
 
 # Zufallszahlen erzeugen
 In beiden Beispielen statt 54 gewünschte Bytezahl eingeben. Einer geht sicher:
+- openssl rand -hex 99 | tr -dc '0-9' | fold -w 5 | paste -sd ' '
 - gpg --gen-random 16 54 | tr -d "a-f"
 - gpg --armor --gen-random 2 54 | tr -d +=/[:alpha:]
 - od -vAn -N54 -t u4 < /dev/urandom | tr -d " " | tr -d "\n"
 Gleichverteilung prüfen: for i in {0..9}; do grep -o $i zufallszahlen.txt | wc -l; done
+
+# Borgbackup
+borg init --encryption=repokey /pfad/backup | Neues Backupverz. erzeugen
+borg list /pfad/backup | Alle vorhandenen backups anzeigen
+borg extract --list /pfad/backup::backupname | Entpackt ein Backup
+borg create --list --stats --progress /pfad/backup::{now} ~/Downloads | Erzeugt ein Backup
+borg delete --stats --list /pfad/backup::backupname | löscht ein Backup
+borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
   in der Kurzversion mit "-"
 - Verstecke Dateien erkennt man in Linux daran, dass deren Dateiname
   mit einem Punkt beginnt.
-- Dateiendungen sind eher für den user, das Sysem kommt auch gut ohne aus
+- Dateiendungen sind eher für den user, das System kommt auch gut ohne aus
 - Viele Befehle geben mit der Option "-v" deutlich mehr Rückmeldung
 - Ausfühlicher: https://helmbold.de/artikel/Linux-auf-einem-Blatt.pdf
 - "#" Kommentar, alles hinter diesem Zeichen wird nicht ausgeführt
@@ -226,14 +237,14 @@ Gleichverteilung prüfen: for i in {0..9}; do grep -o $i zufallszahlen.txt | wc 
 # Systempflege
 Folgende Befehle einfach regelmäßig ausführen. Den Teil zu den Flatpaks
   auslassen, falls nicht installiert.
-Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && flatpak update"
-Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo snap refresh && flatpak upgrade"
-Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y && sudo rpi-eeprom-update -d -a"
+Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && flatpak update -y"
+Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo snap refresh && flatpak upgrade -y"
+Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo rpi-eeprom-update -d -a"
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
 
 # Setup Raspi
 Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "autologin-user=pi" auskommentieren.
-Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmission gpg idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla texlive-full python3-full && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
+Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmission gpg tldr idle libreoffice thunderbird claws-mail firefox-l10n-de thunderbird-l10n-de hunspell-de-de ufw onionshare onionshare-cli tree openssl vlc gnome-disk-utility syncthing gajim vim gajim-omemo gimp handbrake ffmpeg gnome-text-editor magic-wormhole hedgewars abe billard-gl nexuiz pinball warmux supertux supertuxkart wesnoth warzone2100 teeworlds freeciv endless-sky unknown-horizons 0ad cube2 sauerbraten minetest virt-manager nextcloud-desktop pidgin pidgin-otr simple-scan ghostwriter gedit borgbackup filezilla texlive-full python3-full && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow ssh && sudo ufw enable && sudo ufw status && systemctl enable libvirtd.service && sleep 10 && sudo reboot
 
 # Setup Linux Mint
-sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
+sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
