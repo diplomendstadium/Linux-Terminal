@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-29.12.24 \__/'---'\__/
+02.02.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -223,6 +223,8 @@ borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
   in der Kurzversion mit "-"
+- Um Batterie (Kapazität, Ladezyklen, etc.) zu prüfen: 'upower -e' zeigt Geräte inkl. Pfade an, 'upower -i /pfad/zur/battery' zeigt dann Infos zur gewählten Batterie
+- 'nohup your_command &' lässt Befehl im Hintergrund laufen, so dass dieser weiterläuft, wenn das Terminal geschlossen wird
 - Verstecke Dateien erkennt man in Linux daran, dass deren Dateiname
   mit einem Punkt beginnt.
 - Dateiendungen sind eher für den user, das System kommt auch gut ohne aus
@@ -248,3 +250,6 @@ Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmissi
 
 # Setup Linux Mint
 sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
+
+# QubesOS
+watch -n 30 'xl info | grep memory' | Im Dom0 Terminal ausführen, um RAM auslastung zu überwachen
