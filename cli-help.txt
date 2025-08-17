@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-02.02.25 \__/'---'\__/
+17.08.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -220,6 +220,10 @@ borg create --list --stats --progress /pfad/backup::{now} ~/Downloads | Erzeugt 
 borg delete --stats --list /pfad/backup::backupname | löscht ein Backup
 borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 
+# Archive
+tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
+tar xvf archivname.tar | Entpackt das Archiv in den aktuellen Ordner
+
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
   in der Kurzversion mit "-"
@@ -237,8 +241,8 @@ borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 - Deutlich bessere Anleitung: https://github.com/jlevy/the-art-of-command-line
 
 # Systempflege
-Folgende Befehle einfach regelmäßig ausführen. Den Teil zu den Flatpaks
-  auslassen, falls nicht installiert.
+Folgende Befehle einfach regelmäßig ausführen.
+Den Teil zu den Flatpaks auslassen, falls nicht installiert.
 Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && flatpak update -y"
 Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo snap refresh && flatpak upgrade -y"
 Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo rpi-eeprom-update -d -a"
@@ -250,6 +254,3 @@ Softwareinstallation: sudo apt install -y keepassxc kleopatra openssl transmissi
 
 # Setup Linux Mint
 sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
-
-# QubesOS
-watch -n 30 'xl info | grep memory' | Im Dom0 Terminal ausführen, um RAM auslastung zu überwachen
