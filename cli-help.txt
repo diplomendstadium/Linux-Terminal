@@ -228,6 +228,7 @@ borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 sudo apt update && sudo apt install -y pipx ffmpeg | Installation vorbereiten
 sudo pipx install openai-whisper && sudo pipx ensurepath | Whisper installieren
 whisper audiofile.mp3 --model turbo --language German > MitZeitstempel.txt | Erstellt Transkript
+paste -s -d ' ' transkript.txt > text.txt | Entfernt alle Zeilenumbrüche die Whisper wahllos setzt
 
 # Ollama
 Installation: curl -fsSL https://ollama.com/install.sh | sh
