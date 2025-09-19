@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-17.08.25 \__/'---'\__/
+19.09.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -194,6 +194,10 @@ Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt, hint
 TextVERschlüsselung: echo "Klartext" | openssl enc -aes-256-cbc -a
 TextENTschlüsselung: echo "U2FsdGVkHQ4mf8Ib0=" | openssl enc -aes-256-cbc -a -d
 
+# Textverschlüsselung mit GPG
+TextVERschlüsselung: echo "test" | gpg --armor --symmetric --cipher-algo aes256
+TextENTschlüsselung: echo "cipher" | gpg --decrypt
+
 # Asymmetrische Crypto mit GPG
 Key-Paar erstellen: gpg --full-generate-key (RSA, 4096bit, 2y, Mail leer lassen)
 Alle Schlüssel anzeigen: "gpg --list-keys"
@@ -225,8 +229,16 @@ sudo apt update && sudo apt install -y pipx ffmpeg | Installation vorbereiten
 sudo pipx install openai-whisper && sudo pipx ensurepath | Whisper installieren
 whisper audiofile.mp3 --model turbo --language German > MitZeitstempel.txt | Erstellt Transkript
 
+# Ollama
+Installation: curl -fsSL https://ollama.com/install.sh | sh
+Modellübersicht: https://ollama.com/search
+ollama run gemma3 "Fasse die wesentlichen Inhalte des folgenden Textes zusammen: $(cat text.txt)"
+
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
+
+# Audo aufnehmen
+ffmpeg -f pulse -i default aufnahme.mp3 (beenden mit q)
 
 # Archive
 tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
