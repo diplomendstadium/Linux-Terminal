@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-21.10.25 \__/'---'\__/
+19.11.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -226,7 +226,7 @@ borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
 
 # Automatische Transkripte mit Whisper
 sudo apt update && sudo apt install -y pipx ffmpeg | Installation vorbereiten
-sudo pipx install openai-whisper && sudo pipx ensurepath | Whisper installieren
+pipx install openai-whisper && pipx ensurepath | Whisper installieren (ohne sudo/root!)
 whisper audiofile.mp3 --model turbo --language German > MitZeitstempel.txt | Erstellt Transkript
 paste -s -d ' ' transkript.txt > text.txt | Entfernt alle Zeilenumbrüche die Whisper wahllos setzt
 
