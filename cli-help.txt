@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-19.11.25 \__/'---'\__/
+25.11.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -244,6 +244,15 @@ ffmpeg -f pulse -i default aufnahme.mp3 (beenden mit q)
 # Archive
 tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
 tar xvf archivname.tar | Entpackt das Archiv in den aktuellen Ordner
+
+# Daten teilen - Python Webserver
+python3 -m http.server 1234 | Startet Freigabe des aktuellen Verzeichnisses auf Port 1234
+python3 -m http.server -d files/ | Gibt das Verzeichnis files frei auf Port 8000
+
+# Daten teilen - Copyparty
+Download: wget -O https://github.com/9001/copyparty/releases/latest/download/copyparty-sfx.py
+Sicherer Fileserver mit max 1k Daten, der immer 5GB frei lässt und alles nach 1h löscht:
+python3 copyparty-sfx.py -sss -v copyparty-files::rwmd:c,lifetime=3600:c,df=5g:c,vmaxn=1k -e2d
 
 # Systempflege
 Folgende Befehle einfach regelmäßig ausführen.
