@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-25.11.25 \__/'---'\__/
+15.12.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -244,6 +244,10 @@ ffmpeg -f pulse -i default aufnahme.mp3 (beenden mit q)
 # Archive
 tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
 tar xvf archivname.tar | Entpackt das Archiv in den aktuellen Ordner
+
+# Dateien via SSH kopieren
+scp user@SRC_HOST:/pfad/zur/datei user@DEST_HOST:/pfad/zur/datei
+Bei Quelle oder Ziel alles bis inkl. Doppelpunkt weglassen, wenn lokal
 
 # Daten teilen - Python Webserver
 python3 -m http.server 1234 | Startet Freigabe des aktuellen Verzeichnisses auf Port 1234
