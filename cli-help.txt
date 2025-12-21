@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-15.12.25 \__/'---'\__/
+21.12.25 \__/'---'\__/
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -240,6 +240,9 @@ ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
 
 # Audo aufnehmen
 ffmpeg -f pulse -i default aufnahme.mp3 (beenden mit q)
+
+# Stop-Motion-Film aus allen Bildern im Ordner erzeugen
+ffmpeg -framerate 20 -pattern_type glob -i '*.jpg' -c:v libx264  output.mp4
 
 # Archive
 tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
