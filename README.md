@@ -29,11 +29,11 @@ pwd | zeigt das aktuelle Arbeitsverzeichnis an
 ls | zeigt den Inhalt des aktuellen Verzeichnisses an
   -> "-a" zeigt auch versteckte Inhalte an
   -> "-l" zeigt mehr Infos inkl. Rechte und das Ergebnis als Liste
-  -> -"h" zeigt Dateigrößen in lesbaren Einheiten an
+  -> "-h" zeigt Dateigrößen in lesbaren Einheiten an
   -> für das aktuelle Verzeichnis, sofern nicht anders angegeben
 cd Pfad | wechselt in das angegebene Verzeichnis
 mkdir ordnername | legt einen ordner an
-  -> mkdir -p kann/viele/ordner/ineinander/auf/einen/schlag/erstellen
+  -> mkdir -p kann/viele/ordner/erstellen
 rmdir ordnername | löscht einen leeren Ordner
 mv pfad/datei pfad2/datei2 | verschiebt oder benennt eine Datei um
 rm datei | Löscht eine Datei, "rm -r ordner" löscht auch volle Ordner
@@ -43,7 +43,7 @@ cp datei1 pfad2/(dateiname) | Kopiert datei1 in Verzeichnis pfad2
 tree | Zeigt übersichtliche Ordnerstrukturen an ("-L 2" beschränkt die
   Anzeigeiefe, "-p" zeigt Reche, "-sh" die Größe)
 
-Absolute Pfadangaben beginnen mit "/", also z.B. "/home/ines/bilder/2024/"
+Absolute Pfadangaben mit "/", also z.B. "/home/ines/bilder/2024/"
 
 Relative Pfadangaben sind möglich. Ist man also z.B. im Ordner "bilder", 
   kann man mit "cd 2024/" in den Ordner wechseln. "." steht bei relativen
