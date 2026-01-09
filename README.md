@@ -7,7 +7,7 @@ Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
 23.12.25 \__/'---'\__/
-```
+
 
 https://github.com/diplomendstadium/Linux-Terminal
 
@@ -296,3 +296,4 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* 
 - Dateinamen dürfen Maximal 255 Zeichen haben
 - die Option "-y" bejaht aufkommende Nachfragen
 - Deutlich bessere Anleitung: https://github.com/jlevy/the-art-of-command-line
+```
