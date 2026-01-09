@@ -1,4 +1,4 @@
-
+```
 Erste        .---.
 Hilfe       /     \
 fürs        \.@-@./
@@ -7,6 +7,7 @@ Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
 23.12.25 \__/'---'\__/
+```
 
 https://github.com/diplomendstadium/Linux-Terminal
 
