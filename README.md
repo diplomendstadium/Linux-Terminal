@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-23.12.25 \__/'---'\__/
+25.02.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -250,6 +250,11 @@ ffmpeg -framerate 15 -pattern_type glob -i '*.jpg' -vf "scale=-2:720" -c:v libx2
 # Archive
 tar cvf archivname.tar DateioderOrdner | Packt angegebene Datei(en) in ein Archiv
 tar xvf archivname.tar | Entpackt das Archiv in den aktuellen Ordner
+
+# SSH
+ssh-keygen | Erstellt einen eigenen Schlüssel
+ssh-copy-id user@host | Kopiert den eigenen Key auf einen Server
+Zukünftig ist ein Login ohne Passwort möglich :)
 
 # Dateien via SSH kopieren
 scp user@SRC_HOST:/pfad/zur/datei user@DEST_HOST:/pfad/zur/datei
