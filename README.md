@@ -286,7 +286,9 @@ Firewall einschalten
 # Setup Debian
 In der Datei /etc/apt/sources.list folgende Zeile ergänzen:
 deb http://deb.debian.org/debian/ sid main contrib non-free
-Danach kann man z.B. VirtualBox installieren und erhält neuere Software. Aber vorsicht, "sid" steht für Debian-Unstable-Distributio! 
+Danach kann man z.B. VirtualBox installieren und erhält neuere Software. Aber vorsicht, "sid" steht für Debian-Unstable-Distributio!
+Wer es weniger riskan möchte, ergänzt stattdessen folgende Zeile:
+deb http://deb.debian.org/debian trixie-backports main contrib non-free non-free-firmware
 
 # Setup Linux Mint
 sudo apt update && sudo apt full-upgrade && sudo apt remove transmission* libreoffice* hexchat && flatpak install org.onlyoffice.desktopeditors && sudo apt install gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc torbrowser-launcher vim gimp handbrake ffmpeg magic-wormhole borgbackup chromium 
