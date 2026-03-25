@@ -277,6 +277,8 @@ Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autocle
 Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo snap refresh && flatpak upgrade -y"
 Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo rpi-eeprom-update -d -a"
 Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
+Debian in root: "apt update && apt full-upgrade && apt autoclean && apt autoremove --purge && flatpak update"
+Debian als user: "pipx upgrade-all"
 
 # Setup Raspi
 Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "autologin-user=pi" auskommentieren.
@@ -284,11 +286,11 @@ Softwareinstallation: sudo apt install -y keepassxc-full kleopatra openssl idle 
 Firewall einschalten
 
 # Setup Debian 13
-In der Datei /etc/apt/sources.list folgende Zeile ergänzen:
-deb http://deb.debian.org/debian/ sid main contrib non-free
-Danach kann man z.B. VirtualBox installieren und erhält neuere Software. Aber vorsicht, "sid" steht für Debian-Unstable-Distributio!
-Wer es weniger riskan möchte, ergänzt stattdessen folgende Zeile:
-deb http://deb.debian.org/debian trixie-backports main contrib non-free non-free-firmware
+In /etc/apt/sources.list überall anpassen zu: "main contrib non-free non-free-firmware"
+Zudem als neue Zeile ergänzen: "deb http://deb.debian.org/debian trixie-backports main contrib non-free non-free-firmware"
+Als root: "apt update && apt full-upgrade && apt remove evolution && apt install  borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak install flathub com.prusa3d.PrusaSlicer chat.delta.desktop"
+Signal als root installieren: "wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg; cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null && wget -O signal-desktop.sources https://updates.signal.org/static/desktop/apt/signal-desktop.sources; cat signal-desktop.sources | sudo tee /etc/apt/sources.list.d/signal-desktop.sources > /dev/null && apt update && apt install signal-desktop"
+Als user: "pipx install openai-whisper yt-dlp && pipx ensurepath"
 
 # Setup Linux Mint
 sudo apt update && sudo apt full-upgrade && sudo apt remove transmission* libreoffice* hexchat && flatpak install org.onlyoffice.desktopeditors && sudo apt install gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc torbrowser-launcher vim gimp handbrake ffmpeg magic-wormhole borgbackup chromium 
