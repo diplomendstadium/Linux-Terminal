@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-25.02.26 \__/'---'\__/
+25.03.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -283,8 +283,13 @@ Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "auto
 Softwareinstallation: sudo apt install -y keepassxc-full kleopatra openssl idle libreoffice thunderbird firefox-l10n-de thunderbird-l10n-de hunspell-de-de gufw onionshare onionshare-cli tree gnome-disk-utility syncthing vim gimp handbrake ffmpeg gnome-text-editor magic-wormhole virt-manager nextcloud-desktop ghostwriter gedit borgbackup python3-full pipx
 Firewall einschalten
 
+# Setup Debian
+In der Datei /etc/apt/sources.list folgende Zeile ergänzen:
+deb http://deb.debian.org/debian/ sid main contrib non-free
+Danach kann man z.B. VirtualBox installieren und erhält neuere Software. Aber vorsicht, "sid" steht für Debian-Unstable-Distributio! 
+
 # Setup Linux Mint
-sudo apt update && sudo apt full-upgrade -y && sudo apt remove -y transmission* libreoffice* hexchat && flatpak install -y org.torproject.torbrowser-launcher org.onlyoffice.desktopeditors org.signal.Signal && sudo apt install -y gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc vim gimp handbrake ffmpeg magic-wormhole borgbackup gcompris-qt chromium gajim && sudo reboot
+sudo apt update && sudo apt full-upgrade && sudo apt remove transmission* libreoffice* hexchat && flatpak install org.onlyoffice.desktopeditors && sudo apt install gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc torbrowser-launcher vim gimp handbrake ffmpeg magic-wormhole borgbackup chromium 
 
 # Sonstiges
 - Optionen zu Befehlen werden in der langversion meist mit "--" angegeben,
