@@ -283,7 +283,7 @@ Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "auto
 Softwareinstallation: sudo apt install -y keepassxc-full kleopatra openssl idle libreoffice thunderbird firefox-l10n-de thunderbird-l10n-de hunspell-de-de gufw onionshare onionshare-cli tree gnome-disk-utility syncthing vim gimp handbrake ffmpeg gnome-text-editor magic-wormhole virt-manager nextcloud-desktop ghostwriter gedit borgbackup python3-full pipx
 Firewall einschalten
 
-# Setup Debian
+# Setup Debian 13
 In der Datei /etc/apt/sources.list folgende Zeile ergänzen:
 deb http://deb.debian.org/debian/ sid main contrib non-free
 Danach kann man z.B. VirtualBox installieren und erhält neuere Software. Aber vorsicht, "sid" steht für Debian-Unstable-Distributio!
