@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-25.03.26 \__/'---'\__/
+10.04.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -236,6 +236,12 @@ Installation: curl -fsSL https://ollama.com/install.sh | sh
 Modellübersicht: https://ollama.com/search
 ollama run gemma3 "Fasse die wesentlichen Inhalte des folgenden Textes zusammen: $(cat text.txt)"
 
+# YouTube Download mit yt-dlp
+Installation: sudo apt install yt-dlp ffmgpeg
+Formate anzeigen lassen: yt-dlp --list-formats url
+Download: yt-dlp -f a+b mp4 url (a Zahl für Audioformat, b für Video)
+Nur Audio: yt-dlp -x --audio-format mp3 url
+
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
 
@@ -270,7 +276,7 @@ Fileserver mit max 1k Daten, der immer 5GB frei lässt und alles nach 1h löscht
 python3 copyparty-sfx.py -sss -v copyparty-files::rwmd:c,lifetime=3600:c,df=5g:c,vmaxn=1k -e2d
 
 # Systempflege
-Firmware- & BIOS-Updates: fwupdmgr refresh && fwupdmgr get-updates && fwupdmgr update
+Firmware- & BIOS-Updates, nacheinander: fwupdmgr refresh | fwupdmgr get-updates | fwupdmgr update
 Folgende Befehle einfach regelmäßig ausführen.
 Den Teil zu den Flatpaks auslassen, falls nicht installiert.
 Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && flatpak update -y"
@@ -288,7 +294,7 @@ Firewall einschalten
 # Setup Debian 13
 In /etc/apt/sources.list überall anpassen zu: "main contrib non-free non-free-firmware"
 Zudem als neue Zeile ergänzen: "deb http://deb.debian.org/debian trixie-backports main contrib non-free non-free-firmware"
-Als root: "apt update && apt full-upgrade && apt remove evolution && apt install  borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak install flathub com.prusa3d.PrusaSlicer chat.delta.desktop"
+Als root: "apt update && apt full-upgrade && apt remove evolution && apt install curl ncal borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak install flathub com.prusa3d.PrusaSlicer chat.delta.desktop"
 Signal als root installieren: "wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg; cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null && wget -O signal-desktop.sources https://updates.signal.org/static/desktop/apt/signal-desktop.sources; cat signal-desktop.sources | sudo tee /etc/apt/sources.list.d/signal-desktop.sources > /dev/null && apt update && apt install signal-desktop"
 Als user: "pipx install openai-whisper yt-dlp && pipx ensurepath"
 
