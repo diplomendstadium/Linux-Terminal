@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-10.04.26 \__/'---'\__/
+15.04.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -210,12 +210,12 @@ Verschlüsseln: gpg --encrypt --sign --armor -r keyID_Empfänger geheime.datei
 Entschlüsseln: gpg --decrypt geheime.datei.gpg > klartext.txt
 
 # Zufallszahlen erzeugen
-In beiden Beispielen statt 54 gewünschte Bytezahl eingeben. Einer geht sicher:
-- openssl rand -hex 99 | tr -dc '0-9' | fold -w 5 | paste -sd ' '
+- openssl rand -hex 99 | tr -dc '0-9'
 - gpg --gen-random 16 54 | tr -d "a-f"
-- gpg --armor --gen-random 2 54 | tr -d +=/[:alpha:]
+- gpg --armor --gen-random 2 300 | tr -d +=/[:alpha:]
 - od -vAn -N54 -t u4 < /dev/urandom | tr -d " " | tr -d "\n"
 Gleichverteilung prüfen: for i in {0..9}; do grep -o $i zufallszahlen.txt | wc -l; done
+In Fünfergruppen sortieren, einfach an einen der Befehel oben anhängen: | fold -w 5 | paste -sd ' '
 
 # Borgbackup
 borg init --encryption=repokey /pfad/backup | Neues Backupverz. erzeugen
