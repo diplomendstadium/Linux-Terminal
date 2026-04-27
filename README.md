@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-15.04.26 \__/'---'\__/
+27.04.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -239,7 +239,8 @@ ollama run gemma3 "Fasse die wesentlichen Inhalte des folgenden Textes zusammen:
 # YouTube Download mit yt-dlp
 Installation: sudo apt install yt-dlp ffmgpeg
 Formate anzeigen lassen: yt-dlp --list-formats url
-Download: yt-dlp -f a+b mp4 url (a Zahl für Audioformat, b für Video)
+Download: yt-dlp -f a+b url (a Zahl für Audioformat, b für Video)
+Download als mp4: yt-dlp -f a+b --merge-output-format mp4 url
 Nur Audio: yt-dlp -x --audio-format mp3 url
 
 # Video in Audio umwandeln
