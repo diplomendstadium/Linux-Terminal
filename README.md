@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-27.04.26 \__/'---'\__/
+05.05.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -221,9 +221,10 @@ In Fünfergruppen sortieren, einfach an einen der Befehel oben anhängen: | fold
 borg init --encryption=repokey /pfad/backup | Neues Backupverz. erzeugen
 borg list /pfad/backup | Alle vorhandenen backups anzeigen
 borg extract --list /pfad/backup::backupname | Entpackt ein Backup
-borg create --list --stats --progress /pfad/backup::{now} ~/Downloads | Erzeugt ein Backup
+borg create --list --stats --progress /pfad/backup::{now} MeineDaten/ | Erzeugt ein Backup
 borg delete --stats --list /pfad/backup::backupname | löscht ein Backup
 borg compact --progress --verbose /pfad/backup | Löscht unnötige Daten
+borg create --list --stats --progress /pfad/backup::{now} MeineDaten/ --exclude='*.'{iso,mp4,ova,img} | spart Speicherplatz
 
 # Automatische Transkripte mit Whisper
 sudo apt update && sudo apt install -y pipx ffmpeg | Installation vorbereiten
