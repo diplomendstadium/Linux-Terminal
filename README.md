@@ -294,7 +294,7 @@ Softwareinstallation: sudo apt install -y keepassxc-full kleopatra openssl idle 
 Firewall einschalten
 
 # Setup Debian 13
-Paketquellen wie [hier](https://github.com/diplomendstadium/debian-etc-apt-sources-list) beschrieben anpassen.
+Paketquellen wie folgt anpassen: https://github.com/diplomendstadium/debian-etc-apt-sources-list
 Als root: "apt update && apt full-upgrade && apt remove evolution && apt install curl ncal borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
 Als user: "pipx install openai-whisper yt-dlp && pipx ensurepath"
 
