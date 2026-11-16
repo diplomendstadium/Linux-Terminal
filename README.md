@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-07.07.26 \__/'---'\__/
+16.11.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -243,6 +243,8 @@ Formate anzeigen lassen: yt-dlp --list-formats url
 Download: yt-dlp -f a+b url (a Zahl für Audioformat, b für Video)
 Download als mp4: yt-dlp -f a+b --merge-output-format mp4 url
 Nur Audio: yt-dlp -x --audio-format mp3 url
+Nummerierte Playlist als mp3: yt-dlp --yes-playlist -x --audio-format mp3 --audio-quality 0 -o "%(playlist_index)03d - %(title)s.%(ext)s" url
+
 
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
