@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-16.11.26 \__/'---'\__/
+24.11.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -245,6 +245,21 @@ Download als mp4: yt-dlp -f a+b --merge-output-format mp4 url
 Nur Audio: yt-dlp -x --audio-format mp3 url
 Nummerierte Playlist als mp3: yt-dlp --yes-playlist -x --audio-format mp3 --audio-quality 0 -o "%(playlist_index)03d - %(title)s.%(ext)s" url
 
+# Git
+Installation: apt install git && git --version
+Setup dann einmalig mit folgenden drei Befehlen:
+- git config --global user.name "username" | Nutzername setzen
+- git config --global user.email "test@test.de" | Mailadresse setzen
+- git config --global init.defaultBranch main | defaultBranch setzen
+git init | Erzeugt neues Git-Verzeichnis im aktuellen Ordner
+git status | Zeigt aktuellen Zustand an
+git add file | fügt datei zum git hinzu
+git add . | fügt alle Daten im Ordner zum nächsten Commit hinzu
+git commit -m "erklärung" | übermittelt änderungen zum git-verzeichnis
+git log | zeigt an was bisher passiert ist
+git log --oneline | wie oben nur kürzer
+git diff | zeigt unterschied von aktuellem zustand zu letztem Commit
+git restore file | setzt file auf Stand des letzten Commits zurück
 
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
