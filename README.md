@@ -263,6 +263,7 @@ git restore file | setzt file auf Stand der staging area zurück
 git branch | zeigt branches an
 git branch xy | legt branch xy an
 git switch xy | wechselt zu branch xy
+git merge xy | übernimmt branch xy in den aktuellen
 
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
