@@ -6,7 +6,7 @@ Linux       /`\_/`\
 Terminal   //  _  \\
           | \     )|_
 Stand:   /`\_`>  <_/ \
-24.11.26 \__/'---'\__/
+25.11.26 \__/'---'\__/
 
 
 https://github.com/diplomendstadium/Linux-Terminal
@@ -88,7 +88,7 @@ head dateiname | Gibt nur die ersten 10 Zeilen aus
 tail dateiname | Gibt nur die letzten 10 Zeilen aus
 more dateiname | Gibt den Inhalt seitenweise aus (vorwärts blättern mit der
   Leertaste, zurück mit "b", beenden mit "q")
-cud -d ":" -f 8 dateiname | Zerlegt die Datei nach dem Trennzeichen ":" in
+cut -d ":" -f 8 dateiname | Zerlegt die Datei nach dem Trennzeichen ":" in
   Einzelteile und zeigt nur das achte Stück an.
 tr -s " " | Löscht mehrere Leerzeichen, tr -d " " würde alle löschen
 Texteditor "vim dateiname", Tutorial für vim: "vimtutor
@@ -96,8 +96,8 @@ expand file | Ersetzt Tabulatoren in der Datei durch Leerzeichen
 
 # Rechte
 -(ignorieren) rwx(Besitzer) rw-(Gruppe) r--(alle anderen)
-r = lesen | w = schreiben (und löschen) | x = ausführen
-u = Besitzer | g = Gruppe | 0 = Andere
+r = lesen | w = schreiben | x = ausführen
+u = Besitzer | g = Gruppe | o = Andere
 chmod u+x file | Gibt Benutzer das Recht auszuführen
 chmod go-r file | Entzieht Gruppe und anderen das Recht zu lesen
 chmod u=rw,go= file | Benutzer liest und schreibt, Rest hat keine Rechte
@@ -108,7 +108,7 @@ Der Benutzer root darf immer alles.
 Weitere Informationen hier: https://wiki.ubuntuusers.de/Rechte/
 
 # Klammerexpansion {} und Wildcard *
-toch file{01..05}.{txt,docx,pdf} | Erstellt von "file01.txt" bis
+touch file{01..05}.{txt,docx,pdf} | Erstellt von "file01.txt" bis
   "file05.pdf" alle 15 möglichen Konstellationen
 rm file*.txt | Löscht die fünf txt-Dateien wieder
 
@@ -129,7 +129,7 @@ In Skripten: $1 bis $9 Positionsparameter, $0 Skriptname
 # Paketverwaltung dnf (Fedora, RockyLinux, RedHat, etc.)
 dnf search magic | sucht nach Paketen, in denen "magic" vorkommt
 dnf upgrade --refresh | sucht und installiert Upgrades
-dnf list | Zeigt installierte Pakete
+dnf list --installed | Zeigt installierte Pakete
 dnf install paketname | Installiert ein Paket
 dnf repolist all | zeigt verfügbare Repos
 dnf clean all | Löscht Zwischenspeicher
@@ -157,7 +157,7 @@ flatpak history | Zeigt den Verlauf der Aktivitäten
 # Benutzerverwaltung
 useradd -m username | Erstellt einen neuen Nutzer
 passwd username | Vergibt bzw. ändert ein Passwort
-passwd -l username | Sperrt User
+passwd -l username | Sperrt Anmledung des Users (mit Passwort)
 /etc/passwd (Nutzerübersicht)
   Nutzername:Passwort:UID:GID:Informationen:Homeverzeichnis:LoginShell
 /etc/shadow (PasswörterundSicherheit)
@@ -185,12 +185,12 @@ mount /dev/sdc1 /srv/daten | Bindet eine Partition ein
   
 # Automatisch wiederkehrende Aufgaben (Cron)
 Systemweite mit Adminrechten in /etc/crontab eintragen
-"systemctl status cron.service" zeigt Cronjobs an
+"systemctl status cron.service" zeigt Status an
 crontab -l zeigt aktuelle Cronjobs des Benutzers
 crontab -e editiert die aktuellen cronjobs (https://wiki.ubuntuusers.de/Cron/)
   
 # OpenSSL
-Dateiverschlüsselung: openssc enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 -salt -in dateiname -out dateiname.aes
+Dateiverschlüsselung: openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 9384 -salt -in dateiname -out dateiname.aes
 Entschlüsselung gleich, nur mit zusätzlicher Option "-d" (d für decrypt, hinter ...cbc einfügen)
 TextVERschlüsselung: echo "Klartext" | openssl enc -aes-256-cbc -a
 TextENTschlüsselung: echo "U2FsdGVkHQ4mf8Ib0=" | openssl enc -aes-256-cbc -a -d
@@ -238,7 +238,7 @@ Modellübersicht: https://ollama.com/search
 ollama run gemma3 "Fasse die wesentlichen Inhalte des folgenden Textes zusammen: $(cat text.txt)"
 
 # YouTube Download mit yt-dlp
-Installation: sudo apt install yt-dlp ffmgpeg
+Installation: sudo apt install yt-dlp ffmpeg
 Formate anzeigen lassen: yt-dlp --list-formats url
 Download: yt-dlp -f a+b url (a Zahl für Audioformat, b für Video)
 Download als mp4: yt-dlp -f a+b --merge-output-format mp4 url
@@ -258,8 +258,11 @@ git add . | fügt alle Daten im Ordner zum nächsten Commit hinzu
 git commit -m "erklärung" | übermittelt änderungen zum git-verzeichnis
 git log | zeigt an was bisher passiert ist
 git log --oneline | wie oben nur kürzer
-git diff | zeigt unterschied von aktuellem zustand zu letztem Commit
-git restore file | setzt file auf Stand des letzten Commits zurück
+git diff | zeigt unterschied von aktuellem zustand zur staging area
+git restore file | setzt file auf Stand der staging area zurück
+git branch | zeigt branches an
+git branch xy | legt branch xy an
+git switch xy | wechselt zu branch xy
 
 # Video in Audio umwandeln
 ffmpeg -i videodatei.mp4 -vn -q:a 8 audiodatei.mp3
@@ -295,15 +298,15 @@ Fileserver mit max 1k Daten, der immer 5GB frei lässt und alles nach 1h löscht
 python3 copyparty-sfx.py -sss -v copyparty-files::rwmd:c,lifetime=3600:c,df=5g:c,vmaxn=1k -e2d
 
 # Systempflege
-Firmware- & BIOS-Updates, nacheinander: fwupdmgr refresh | fwupdmgr get-updates | fwupdmgr update
+Firmware- & BIOS-Updates nacheinander: fwupdmgr refresh, fwupdmgr get-updates, fwupdmgr update
 Folgende Befehle einfach regelmäßig ausführen.
 Den Teil zu den Flatpaks auslassen, falls nicht installiert.
-Debian-Basiert: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && flatpak update -y"
-Ubuntu: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo snap refresh && flatpak upgrade -y"
-Raspi: "sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo rpi-eeprom-update -d -a"
-Fedora/Rocky: "sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update"
-Debian in root: "apt update && apt full-upgrade && apt autoclean && apt autoremove --purge && flatpak update"
-Debian als user: "pipx upgrade-all"
+Debian-Basiert: sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && flatpak update -y
+Ubuntu: sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo snap refresh && flatpak upgrade -y
+Raspi: sudo apt update && sudo apt full-upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y --purge && sudo rpi-eeprom-update -d -a
+Fedora/Rocky: sudo dnf clean all && sudo dnf upgrade --refresh -y && sudo dnf autoremove && flatpak update
+Debian in root: apt update && apt full-upgrade && apt autoclean && apt autoremove --purge && flatpak update
+Debian als user: pipx upgrade-all
 
 # Setup Raspi
 Autologin deaktivieren: In der Datei "/etc/lightdm/lightdm.conf" die Zeile "autologin-user=pi" auskommentieren.
@@ -312,8 +315,8 @@ Firewall einschalten
 
 # Setup Debian 13
 Paketquellen wie folgt anpassen: https://github.com/diplomendstadium/debian-etc-apt-sources-list
-Als root: "apt update && apt full-upgrade && apt remove evolution && apt install curl ncal borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
-Als user: "pipx install openai-whisper yt-dlp && pipx ensurepath"
+Als root: apt update && apt full-upgrade && apt remove evolution && apt install curl ncal borgbackup vim keepassxc torbrowser-launcher vlc ffmpeg pipx nextcloud-desktop python3-full texlive chromium flatpak gnome-software-plugin-flatpak magic-wormhole thunderbird virt-manager && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+Als user: pipx install openai-whisper yt-dlp && pipx ensurepath
 
 # Setup Linux Mint
 sudo apt update && sudo apt full-upgrade && sudo apt remove transmission* libreoffice* hexchat && flatpak install org.onlyoffice.desktopeditors && sudo apt install gnome-clocks keepassxc kleopatra tldr texlive-full python3-full tree openssl vlc torbrowser-launcher vim gimp handbrake ffmpeg magic-wormhole borgbackup chromium 
@@ -330,7 +333,7 @@ sudo apt update && sudo apt full-upgrade && sudo apt remove transmission* libreo
 - Ausfühlicher: https://helmbold.de/artikel/Linux-auf-einem-Blatt.pdf
 - "#" Kommentar, alles hinter diesem Zeichen wird nicht ausgeführt
 - Auf xfs Dateisystemen ist die Dateiwiederherstellung schwieriger...
-- Dateinamen dürfen Maximal 255 Zeichen haben
+- Dateinamen dürfen Maximal 255 Bytes haben
 - die Option "-y" bejaht aufkommende Nachfragen
 - Deutlich bessere Anleitung: https://github.com/jlevy/the-art-of-command-line
 ```
